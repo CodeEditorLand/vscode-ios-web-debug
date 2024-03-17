@@ -1,5 +1,16 @@
 {
+  "name": "debugger-for-ios-web",
+  "displayName": "Debugger for iOS Web",
+  "version": "0.1.2",
+  "description": "Debug your JavaScript code running in Safari on iOS devices from VS Code.",
   "bugs": "https://github.com/Microsoft/vscode-ios-web-debug/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Microsoft/vscode-ios-web-debug"
+  },
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "publisher": "msjsdiag",
+  "scripts": {},
   "contributes": {
     "debuggers": [
       {
@@ -163,7 +174,6 @@
     "localtunnel": "1.8.1",
     "vscode-chrome-debug-core": "0.1.16"
   },
-  "description": "Debug your JavaScript code running in Safari on iOS devices from VS Code.",
   "devDependencies": {
     "gulp": "3.9.1",
     "gulp-mocha": "2.1.3",
@@ -177,18 +187,8 @@
     "typescript": "1.8.9",
     "typings": "0.7.12"
   },
-  "displayName": "Debugger for iOS Web",
-  "icon": ".readme/icon.png",
-  "license": "SEE LICENSE IN LICENSE.txt",
-  "name": "debugger-for-ios-web",
   "optionalDependencies": {
     "vs-libimobile": "0.0.3"
   },
-  "publisher": "msjsdiag",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Microsoft/vscode-ios-web-debug"
-  },
-  "scripts": {},
-  "version": "0.1.2"
+  "icon": ".readme/icon.png"
 }
