@@ -196,7 +196,7 @@
 		"mockery": "2.1.0",
 		"sinon": "17.0.1",
 		"typescript": "5.4.2",
-		"typescript-esbuild": "latest",
+		"typescript-esbuild": "0.4.5",
 		"typings": "0.7.12"
 	},
 	"optionalDependencies": {
