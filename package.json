@@ -1,27 +1,4 @@
 {
-	"name": "debugger-for-ios-web",
-	"displayName": "Debugger for iOS Web",
-	"version": "0.0.1",
-	"private": false,
-	"description": "Debug your JavaScript code running in Safari on iOS devices from VS Code.",
-	"homepage": "https://github.com/CodeEditorLand/Foundation#readme",
-	"bugs": {
-		"url": "https://github.com/CodeEditorLand/Foundation/issues"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/CodeEditorLand/Foundation.git"
-	},
-	"license": "SEE LICENSE IN LICENSE",
-	"author": {
-		"name": "Playform",
-		"email": "Hello@Playform.Cloud",
-		"url": "https://playform.cloud"
-	},
-	"type": "module",
-	"scripts": {
-		"prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'"
-	},
 	"contributes": {
 		"debuggers": [
 			{
@@ -185,6 +162,7 @@
 		"localtunnel": "2.0.2",
 		"vscode-chrome-debug-core": "6.8.11"
 	},
+	"description": "Debug your JavaScript code running in Safari on iOS devices from VS Code.",
 	"devDependencies": {
 		"gulp": "4.0.2",
 		"gulp-mocha": "10.0.0",
@@ -199,11 +177,14 @@
 		"typescript-esbuild": "0.4.5",
 		"typings": "0.7.12"
 	},
+	"displayName": "Debugger for iOS Web",
+	"icon": ".readme/icon.png",
+	"name": "debugger-for-ios-web",
 	"optionalDependencies": {
 		"vs-libimobile": "0.0.5"
 	},
-	"publishConfig": {
-		"access": "public"
+	"scripts": {
+		"prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'"
 	},
-	"icon": ".readme/icon.png"
+	"type": "module"
 }
