@@ -186,17 +186,17 @@
 		]
 	},
 	"dependencies": {
-		"localtunnel": "1.8.1"
+		"localtunnel": "2.0.2"
 	},
 	"devDependencies": {
 		"@playform/build": "0.0.7",
 		"@playform/document": "0.0.6",
-		"mockery": "^1.4.0",
-		"sinon": "^1.17.2",
-		"typings": "^0.7.12"
+		"mockery": "2.1.0",
+		"sinon": "17.0.1",
+		"typings": "0.7.12"
 	},
 	"optionalDependencies": {
-		"vs-libimobile": "^0.0.3"
+		"vs-libimobile": "0.0.5"
 	},
 	"publishConfig": {
 		"access": "public"
