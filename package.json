@@ -1,181 +1,203 @@
 {
-	"name": "debugger-for-ios-web",
-	"displayName": "Debugger for iOS Web",
-	"description": "Debug your JavaScript code running in Safari on iOS devices from VS Code.",
-	"scripts": {
-		"Document": "Document 'Source/**/*.ts'",
-		"prepublishOnly": "Build 'Source/**/*.ts'"
-	},
-	"contributes": {
-		"debuggers": [
-			{
-				"configurationAttributes": {
-					"attach": {
-						"properties": {
-							"deviceName": {
-								"default": "*",
-								"description": "The name of the device to attach to (can be found at the proxy json endpoint) or '*' for any",
-								"type": "string"
-							},
-							"diagnosticLogging": {
-								"default": false,
-								"description": "When true, the adapter logs its own diagnostic info to the console",
-								"type": "boolean"
-							},
-							"port": {
-								"default": 9222,
-								"description": "Port to use for Chrome remote debugging.",
-								"type": "number"
-							},
-							"proxyArgs": {
-								"default": [],
-								"description": "Optional arguments passed to the proxy executable.",
-								"items": {
-									"type": "string"
-								},
-								"type": "array"
-							},
-							"proxyExecutable": {
-								"default": null,
-								"description": "Workspace absolute path to the proxy executable to be used when attaching to a 'device'. If not specified, ios_webkit_debug_proxy.exe will be used from the default install location.",
-								"type": [
-									"string",
-									"null"
-								]
-							},
-							"sourceMaps": {
-								"default": true,
-								"description": "Use JavaScript source maps (if they exist).",
-								"type": "boolean"
-							},
-							"url": {
-								"default": "http://mysite.com/index.html",
-								"description": "A url to find in the attached browser",
-								"type": "string"
-							},
-							"webRoot": {
-								"default": "${workspaceRoot}",
-								"description": "This specifies the workspace absolute path to the webserver root.",
-								"type": "string"
-							}
-						},
-						"required": [
-							"port"
-						]
-					},
-					"launch": {
-						"properties": {
-							"deviceName": {
-								"default": "*",
-								"description": "The name of the device to attach to (can be found at the proxy json endpoint) or '*' for any",
-								"type": "string"
-							},
-							"diagnosticLogging": {
-								"default": false,
-								"description": "When true, the adapter logs its own diagnostic info to the console",
-								"type": "boolean"
-							},
-							"port": {
-								"default": 9222,
-								"description": "Port to use for Chrome remote debugging.",
-								"type": "number"
-							},
-							"proxyArgs": {
-								"default": [],
-								"description": "Optional arguments passed to the proxy executable.",
-								"items": {
-									"type": "string"
-								},
-								"type": "array"
-							},
-							"proxyExecutable": {
-								"default": null,
-								"description": "Workspace absolute path to the proxy executable to be used when attaching to a 'device'. If not specified, ios_webkit_debug_proxy.exe will be used from the default install location.",
-								"type": [
-									"string",
-									"null"
-								]
-							},
-							"sourceMaps": {
-								"default": true,
-								"description": "Use JavaScript source maps (if they exist).",
-								"type": "boolean"
-							},
-							"tunnelPort": {
-								"default": 0,
-								"description": "The local port to expose from the local machine to the internet via a tunnel proxy (or '0' to disable). This allows the connected iOS device to access a webserver running on the local machine",
-								"type": "number"
-							},
-							"url": {
-								"default": "http://mysite.com/index.html",
-								"description": "A url to launch in the attached browser. If you are using the tunnelPort or startLocalServer settings, you can use a relative url here.",
-								"type": "string"
-							},
-							"webRoot": {
-								"default": "${workspaceRoot}",
-								"description": "This specifies the workspace absolute path to the webserver root.",
-								"type": "string"
-							}
-						},
-						"required": [
-							"port"
-						]
-					}
-				},
-				"enableBreakpointsFor": {
-					"languageIds": [
-						"javascript",
-						"typescriptreact"
-					]
-				},
-				"initialConfigurations": [
-					{
-						"deviceName": "*",
-						"name": "iOS - launch localhost",
-						"port": 9222,
-						"request": "launch",
-						"tunnelPort": 8080,
-						"type": "ios",
-						"url": "http://localhost:8080",
-						"webRoot": "${workspaceRoot}"
-					},
-					{
-						"deviceName": "*",
-						"name": "iOS - launch mysite.com",
-						"port": 9222,
-						"request": "launch",
-						"type": "ios",
-						"url": "http://mysite.com/index.html",
-						"webRoot": "${workspaceRoot}"
-					},
-					{
-						"deviceName": "*",
-						"name": "iOS - attach to dev.domain.com",
-						"port": 9222,
-						"request": "attach",
-						"type": "ios",
-						"url": "http://dev.domain.com/",
-						"webRoot": "${workspaceRoot}"
-					}
-				],
-				"label": "iOS",
-				"program": "./out/src/iosDebug.js",
-				"runtime": "node",
-				"type": "ios"
-			}
-		]
-	},
-	"dependencies": {
-		"localtunnel": "2.0.2"
-	},
-	"devDependencies": {
-		"@playform/build": "0.0.7",
-		"mockery": "2.1.0",
-		"sinon": "17.0.1",
-		"typings": "0.7.12"
-	},
-	"optionalDependencies": {
-		"vs-libimobile": "0.0.5"
-	},
-	"icon": ".readme/icon.png"
+    "name": "debugger-for-ios-web",
+    "displayName": "Debugger for iOS Web",
+    "version": "0.1.2",
+    "icon": ".readme/icon.png",
+    "description": "Debug your JavaScript code running in Safari on iOS devices from VS Code.",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Microsoft/vscode-ios-web-debug"
+    },
+    "publisher": "msjsdiag",
+    "bugs": "https://github.com/Microsoft/vscode-ios-web-debug/issues",
+    "engines": {
+        "vscode": "*"
+    },
+    "categories": [
+        "Debuggers"
+    ],
+    "license": "SEE LICENSE IN LICENSE.txt",
+    "dependencies": {
+        "vscode-chrome-debug-core": "0.1.16",
+        "localtunnel": "1.8.1"
+    },
+    "optionalDependencies": {
+        "vs-libimobile": "^0.0.3"
+    },
+    "devDependencies": {
+        "gulp": "^3.9.1",
+        "gulp-mocha": "^2.1.3",
+        "gulp-sourcemaps": "^1.5.2",
+        "gulp-tslint": "^3.3.1",
+        "gulp-typescript": "^2.12.1",
+        "gulp-util": "^3.0.5",
+        "mocha": "^2.3.3",
+        "mockery": "^1.4.0",
+        "sinon": "^1.17.2",
+        "tslint": "^2.5.1",
+        "typescript": "^1.8.9",
+        "typings": "^0.7.12"
+    },
+    "scripts": {
+        "test": "node ./node_modules/mocha/bin/mocha --recursive -u tdd ./out/test/"
+    },
+    "contributes": {
+        "debuggers": [
+            {
+                "type": "ios",
+                "label": "iOS",
+                "enableBreakpointsFor": {
+                    "languageIds": [
+                        "javascript",
+                        "typescriptreact"
+                    ]
+                },
+                "program": "./out/src/iosDebug.js",
+                "runtime": "node",
+                "initialConfigurations": [
+                    {
+                        "name": "iOS - launch localhost",
+                        "type": "ios",
+                        "request": "launch",
+                        "port": 9222,
+                        "url": "http://localhost:8080",
+                        "webRoot": "${workspaceRoot}",
+                        "deviceName": "*",
+                        "tunnelPort": 8080
+                    },
+                    {
+                        "name": "iOS - launch mysite.com",
+                        "type": "ios",
+                        "request": "launch",
+                        "port": 9222,
+                        "url": "http://mysite.com/index.html",
+                        "webRoot": "${workspaceRoot}",
+                        "deviceName": "*"
+                    },
+                    {
+                        "name": "iOS - attach to dev.domain.com",
+                        "type": "ios",
+                        "request": "attach",
+                        "port": 9222,
+                        "url": "http://dev.domain.com/",
+                        "webRoot": "${workspaceRoot}",
+                        "deviceName": "*"
+                    }
+                ],
+                "configurationAttributes": {
+                    "launch": {
+                        "required": [
+                            "port"
+                        ],
+                        "properties": {
+                            "port": {
+                                "type": "number",
+                                "description": "Port to use for Chrome remote debugging.",
+                                "default": 9222
+                            },
+                            "sourceMaps": {
+                                "type": "boolean",
+                                "description": "Use JavaScript source maps (if they exist).",
+                                "default": true
+                            },
+                            "diagnosticLogging": {
+                                "type": "boolean",
+                                "description": "When true, the adapter logs its own diagnostic info to the console",
+                                "default": false
+                            },
+                            "webRoot": {
+                                "type": "string",
+                                "description": "This specifies the workspace absolute path to the webserver root.",
+                                "default": "${workspaceRoot}"
+                            },
+                            "url": {
+                                "type": "string",
+                                "description": "A url to launch in the attached browser. If you are using the tunnelPort or startLocalServer settings, you can use a relative url here.",
+                                "default": "http://mysite.com/index.html"
+                            },
+                            "deviceName": {
+                                "type": "string",
+                                "description": "The name of the device to attach to (can be found at the proxy json endpoint) or '*' for any",
+                                "default": "*"
+                            },
+                            "proxyExecutable": {
+                                "type": [
+                                    "string",
+                                    "null"
+                                ],
+                                "description": "Workspace absolute path to the proxy executable to be used when attaching to a 'device'. If not specified, ios_webkit_debug_proxy.exe will be used from the default install location.",
+                                "default": null
+                            },
+                            "proxyArgs": {
+                                "type": "array",
+                                "description": "Optional arguments passed to the proxy executable.",
+                                "items": {
+                                    "type": "string"
+                                },
+                                "default": []
+                            },
+                            "tunnelPort": {
+                                "type": "number",
+                                "description": "The local port to expose from the local machine to the internet via a tunnel proxy (or '0' to disable). This allows the connected iOS device to access a webserver running on the local machine",
+                                "default": 0
+                            }
+                        }
+                    },
+                    "attach": {
+                        "required": [
+                            "port"
+                        ],
+                        "properties": {
+                            "port": {
+                                "type": "number",
+                                "description": "Port to use for Chrome remote debugging.",
+                                "default": 9222
+                            },
+                            "sourceMaps": {
+                                "type": "boolean",
+                                "description": "Use JavaScript source maps (if they exist).",
+                                "default": true
+                            },
+                            "diagnosticLogging": {
+                                "type": "boolean",
+                                "description": "When true, the adapter logs its own diagnostic info to the console",
+                                "default": false
+                            },
+                            "webRoot": {
+                                "type": "string",
+                                "description": "This specifies the workspace absolute path to the webserver root.",
+                                "default": "${workspaceRoot}"
+                            },
+                            "url": {
+                                "type": "string",
+                                "description": "A url to find in the attached browser",
+                                "default": "http://mysite.com/index.html"
+                            },
+                            "deviceName": {
+                                "type": "string",
+                                "description": "The name of the device to attach to (can be found at the proxy json endpoint) or '*' for any",
+                                "default": "*"
+                            },
+                            "proxyExecutable": {
+                                "type": [
+                                    "string",
+                                    "null"
+                                ],
+                                "description": "Workspace absolute path to the proxy executable to be used when attaching to a 'device'. If not specified, ios_webkit_debug_proxy.exe will be used from the default install location.",
+                                "default": null
+                            },
+                            "proxyArgs": {
+                                "type": "array",
+                                "description": "Optional arguments passed to the proxy executable.",
+                                "items": {
+                                    "type": "string"
+                                },
+                                "default": []
+                            }
+                        }
+                    }
+                }
+            }
+        ]
+    }
 }
