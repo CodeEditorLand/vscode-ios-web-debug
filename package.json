@@ -166,12 +166,12 @@
 		"localtunnel": "2.0.2"
 	},
 	"devDependencies": {
-		"mockery": "^2.1.0",
-		"sinon": "^18.0.0",
-		"typings": "^0.7.12"
+		"mockery": "2.1.0",
+		"sinon": "18.0.0",
+		"typings": "0.7.12"
 	},
 	"optionalDependencies": {
-		"vs-libimobile": "^0.0.5"
+		"vs-libimobile": "0.0.5"
 	},
 	"icon": ".readme/icon.png"
 }
