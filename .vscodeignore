@@ -1,0 +1,11 @@
+**/*.ts
+**/*.map
+.vscode/**
+lib/**
+typings/**
+test/**
+src/**
+*.vsix
+.gitignore
+gulpfile.js
+tsconfig.json
