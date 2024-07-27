@@ -1,14 +1,11 @@
 {
-    "compilerOptions": {
-        "module": "commonjs",
-        "noImplicitAny": false,
-        "removeComments": false,
-        "target": "es5",
-        "sourceMap": true,
-        "outDir": "out"
-    },
-    "exclude": [
-        "node_modules",
-        "typings/browser"
-    ]
+	"compilerOptions": {
+		"module": "commonjs",
+		"noImplicitAny": false,
+		"removeComments": false,
+		"target": "es5",
+		"sourceMap": true,
+		"outDir": "out"
+	},
+	"exclude": ["node_modules", "typings/browser"]
 }
