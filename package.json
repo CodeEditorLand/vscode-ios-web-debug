@@ -1,8 +1,4 @@
 {
-	"name": "debugger-for-ios-web",
-	"displayName": "Debugger for iOS Web",
-	"description": "Debug your JavaScript code running in Safari on iOS devices from VS Code.",
-	"scripts": {},
 	"contributes": {
 		"debuggers": [
 			{
@@ -165,13 +161,17 @@
 	"dependencies": {
 		"localtunnel": "2.0.2"
 	},
+	"description": "Debug your JavaScript code running in Safari on iOS devices from VS Code.",
 	"devDependencies": {
 		"mockery": "2.1.0",
 		"sinon": "18.0.0",
 		"typings": "2.1.1"
 	},
+	"displayName": "Debugger for iOS Web",
+	"icon": ".readme/icon.png",
+	"name": "debugger-for-ios-web",
 	"optionalDependencies": {
 		"vs-libimobile": "0.0.5"
 	},
-	"icon": ".readme/icon.png"
+	"scripts": {}
 }
