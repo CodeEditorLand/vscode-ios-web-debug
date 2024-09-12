@@ -163,15 +163,15 @@
 	},
 	"description": "Debug your JavaScript code running in Safari on iOS devices from VS Code.",
 	"devDependencies": {
-		"mockery": "^1.4.0",
-		"sinon": "^1.17.2",
-		"typings": "^0.7.12"
+		"mockery": "1.4.0",
+		"sinon": "1.17.2",
+		"typings": "0.7.12"
 	},
 	"displayName": "Debugger for iOS Web",
 	"icon": ".readme/icon.png",
 	"name": "debugger-for-ios-web",
 	"optionalDependencies": {
-		"vs-libimobile": "^0.0.3"
+		"vs-libimobile": "0.0.3"
 	},
 	"scripts": {}
 }
