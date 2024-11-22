@@ -14,6 +14,7 @@ import { IOSDebugAdapter } from "./iosDebugAdapter";
 
 const targetFilter = (target) =>
 	target && (!target.type || target.type === "page");
+
 const connection = new ChromeConnection(
 	chromeTargetDiscoveryStrategy.getChromeTargetWebSocketURL,
 	targetFilter,

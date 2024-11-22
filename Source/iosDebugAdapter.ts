@@ -29,11 +29,13 @@ export class IOSDebugAdapter extends ChromeDebugAdapter {
 
 		// Process the launch arguments
 		const settings = this._getProxySettings(args);
+
 		if (typeof settings == "string") {
 			return utils.errP("Passed settings object is a string");
 		}
 
 		let tunnelPort = args.tunnelPort || 0;
+
 		let launchPromise: Promise<string> = null;
 
 		if (tunnelPort) {
@@ -45,6 +47,7 @@ export class IOSDebugAdapter extends ChromeDebugAdapter {
 						// Navigate the to the given tunneled url
 						if (err) {
 							logger.error("Failed to launch localtunnel.");
+
 							return utils.errP(err);
 						}
 
@@ -59,6 +62,7 @@ export class IOSDebugAdapter extends ChromeDebugAdapter {
 
 						// Navigate the attached instance to the tunneled url
 						let pathname = "";
+
 						if (args.url) {
 							let url = Url.parse(args.url);
 							pathname = url.pathname;
@@ -99,6 +103,7 @@ export class IOSDebugAdapter extends ChromeDebugAdapter {
 
 		// Process the attach arguments
 		const settings = this._getProxySettings(args);
+
 		if (typeof settings == "string") {
 			return utils.errP("Passed settings object is a string");
 		}
@@ -122,10 +127,12 @@ export class IOSDebugAdapter extends ChromeDebugAdapter {
 
 	private _getProxySettings(args: any): IProxySettings | string {
 		var settings: IProxySettings = null;
+
 		var errorMessage: string = null;
 
 		// Check that the proxy exists
 		const proxyPath = args.proxyExecutable || iosUtils.getProxyPath();
+
 		if (!proxyPath) {
 			if (utils.getPlatform() != utils.Platform.Windows) {
 				errorMessage = `No iOS proxy was found. Install an iOS proxy (https://github.com/google/ios-webkit-debug-proxy) and specify a valid 'proxyExecutable' path`;
@@ -138,6 +145,7 @@ export class IOSDebugAdapter extends ChromeDebugAdapter {
 
 			// Start with remote debugging enabled
 			const proxyPort = args.port || 9222;
+
 			const proxyArgs = [];
 
 			// Use default parameters for the ios_webkit_debug_proxy executable
@@ -196,6 +204,7 @@ export class IOSDebugAdapter extends ChromeDebugAdapter {
 			let attachArgs = settings.originalArgs;
 			attachArgs["port"] = devicePort;
 			attachArgs["cwd"] = "";
+
 			return super.attach(attachArgs);
 		});
 	}
@@ -211,6 +220,7 @@ export class IOSDebugAdapter extends ChromeDebugAdapter {
 
 				try {
 					const responseArray = JSON.parse(jsonResponse);
+
 					if (Array.isArray(responseArray)) {
 						let devices = responseArray.filter(
 							(deviceInfo) =>
@@ -227,6 +237,7 @@ export class IOSDebugAdapter extends ChromeDebugAdapter {
 									deviceInfo.deviceName.toLowerCase() ===
 										deviceName.toLowerCase(),
 							);
+
 							if (!matchingDevices.length) {
 								logger.log(
 									`Warning: Can't find a device with deviceName: ${deviceName}. Available devices: ${JSON.stringify(devices.map((d) => d.deviceName))}`,
@@ -245,8 +256,10 @@ export class IOSDebugAdapter extends ChromeDebugAdapter {
 
 							// Get the port for the actual device endpoint
 							const deviceUrl: string = devices[0].url;
+
 							if (deviceUrl) {
 								const portIndex = deviceUrl.indexOf(":");
+
 								if (portIndex > -1) {
 									devicePort = parseInt(
 										deviceUrl.substr(portIndex + 1),
