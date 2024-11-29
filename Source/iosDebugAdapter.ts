@@ -12,6 +12,7 @@ import * as iosUtils from "./utilities";
 
 export class IOSDebugAdapter extends ChromeDebugAdapter {
 	private _proxyProc: ChildProcess;
+
 	private _localTunnel: ILocalTunnelInfoObject;
 
 	constructor(chromeConnection) {
@@ -41,6 +42,7 @@ export class IOSDebugAdapter extends ChromeDebugAdapter {
 		if (tunnelPort) {
 			launchPromise = new Promise((resolve, reject) => {
 				logger.log("Launching localtunnel against port " + tunnelPort);
+
 				localtunnel(
 					tunnelPort,
 					(err: Error, tunnel: ILocalTunnelInfoObject) => {
@@ -55,8 +57,10 @@ export class IOSDebugAdapter extends ChromeDebugAdapter {
 
 						// Set the store member and listen for any errors
 						this._localTunnel = tunnel;
+
 						this._localTunnel.on("error", (err) => {
 							logger.log("Tunneling proxy error: " + err);
+
 							this.terminateSession();
 						});
 
@@ -65,6 +69,7 @@ export class IOSDebugAdapter extends ChromeDebugAdapter {
 
 						if (args.url) {
 							let url = Url.parse(args.url);
+
 							pathname = url.pathname;
 						}
 
@@ -72,6 +77,7 @@ export class IOSDebugAdapter extends ChromeDebugAdapter {
 							this._localTunnel.url,
 							pathname,
 						);
+
 						resolve(navigateTo);
 					},
 				);
@@ -114,11 +120,13 @@ export class IOSDebugAdapter extends ChromeDebugAdapter {
 	public clearEverything(): void {
 		if (this._localTunnel) {
 			this._localTunnel.close();
+
 			this._localTunnel = null;
 		}
 
 		if (this._proxyProc) {
 			this._proxyProc.kill("SIGINT");
+
 			this._proxyProc = null;
 		}
 
@@ -185,14 +193,18 @@ export class IOSDebugAdapter extends ChromeDebugAdapter {
 		logger.log(
 			`spawn('${settings.proxyPath}', ${JSON.stringify(settings.proxyArgs)})`,
 		);
+
 		this._proxyProc = spawn(settings.proxyPath, settings.proxyArgs, {
 			detached: true,
 			stdio: ["ignore"],
 		});
 		(<any>this._proxyProc).unref();
+
 		this._proxyProc.on("error", (err) => {
 			logger.log("device proxy error: " + err);
+
 			logger.log("Do you have the iTunes drivers installed?");
+
 			this.terminateSession();
 		});
 
@@ -202,7 +214,9 @@ export class IOSDebugAdapter extends ChromeDebugAdapter {
 			settings.optionalDeviceName,
 		).then((devicePort: number) => {
 			let attachArgs = settings.originalArgs;
+
 			attachArgs["port"] = devicePort;
+
 			attachArgs["cwd"] = "";
 
 			return super.attach(attachArgs);

@@ -4,8 +4,12 @@
 
 export interface IProxySettings {
 	proxyPath: string;
+
 	optionalDeviceName: string;
+
 	proxyPort: number;
+
 	proxyArgs: string[];
+
 	originalArgs: any;
 }
